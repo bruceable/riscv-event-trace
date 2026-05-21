@@ -61,11 +61,11 @@ itype = 8 (indirect call), 9 (direct call), 12 (co-routine swap), 13 (return)
 
 |*External Signal (trigger) Events*
 (((Event Types, External Signal Events)))
-|Edge-triggered signals that can insert a trace packet containing the closest retired PC at the time of the event, plus timestamp.  This enables tracing of external events such as interrupts, I/O events, DMA start-end markers, uncore signals, or user-selectable SoC-based events outside of core execution and to *time correlate* them with program execution. (Defined in the Trace Control Interface spec cite:[riscv-trace-control-interface-spec-1.0] as "External Trace Triggers").
+|Edge-triggered signals that can insert a trace packet containing the closest retired PC at the time of the event, plus timestamp.  This enables tracing of external events such as interrupts, I/O events, DMA start-end markers, uncore signals, or user-selectable SoC-based events outside of core execution and to *time correlate* them with program execution. External Trace Triggers are defined in the Trace Control Interface spec cite:[riscv-trace-control-interface-spec-1.0, External Trace Triggers].
 
 |*Performance Counter Selector Events*
 (((Event Types, Performance Counter Selector Events)))
-|RISC-V HPM (Hardware Performance Monitor) cite:[ The RISC-V Instruction Set Manual, Volume II: Privileged Architecture] includes selector registers (mhpmeventX) which are user-programmed to select one (or several) core event types to count. This Event Trace feature extends this performance counter feature to record the closest retired PC on the rising edge of mhpmeventX output and save it in the trace buffer thus showing *where* in the code the core event occurred.
+|RISC-V HPM (Hardware Performance Monitor) cite:[riscv-privileged-spec-1.0, Volume II: Privileged Architecture] includes selector registers (mhpmeventX) which are user-programmed to select one (or several) core event types to count. This Event Trace feature extends this performance counter feature to record the closest retired PC on the rising edge of mhpmeventX output and save it in the trace buffer thus showing *where* in the code the core event occurred.
 |===
 
 === Event Trace Timestamp
