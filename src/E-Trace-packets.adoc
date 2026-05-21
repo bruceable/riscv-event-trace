@@ -1,6 +1,5 @@
 
 
-//[#E-Trace Packets]
-== E-Trace Packets
+== E-Trace cite:[riscv-E-Trace-spec-1.0] Packets
 
 This file (E-Trace-packets.adoc) defines the E-Trace packets for Event Trace.

@@ -1,5 +1,5 @@
 
-== N-Trace Packets
+== N-Trace cite:[riscv-N-Trace-spec-1.0] Packets
 
 This file (n-Trace-packets.adoc) defines the N-Trace packets for Event Trace.
 
