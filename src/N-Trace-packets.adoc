@@ -498,7 +498,7 @@ Messages that include the Program Counter (PC) are predominantly U-ADDRes.  Peri
 Hardware counts the number of Event Trace messages that include a PC and outputs a synchronization message when the count reaches the programmed value. Messages that can include an F-ADDR include all EVT (TCODE=0x23) messages that include a PC address and CALL_SYNC. 
 
 ===  Profiling Performance Counter (PPC) Recording
-((((N-Trace, Performance Counter Recording message)))
+(((N-Trace, Performance Counter Recording message)))
 
 This message is used to record the Event Trace Profiling Performance Counter (PPCs) which are delta values. Since N-Trace variable fields use leading-zero suppression to reduce bandwidth, the number of bytes used to record each counter in many cases is reduced. The closer together events are in time, the smaller the delta count, thus fewer bits wide. Each byte carries 6 bits of counter value so the incremental sizes are 6 bits/1 byte, 12 bits/2 bytes, 18 bits/3 bytes, and 24 bits/4 bytes.
 
@@ -589,4 +589,3 @@ N-Trace MTIME_SYNC Message to record mtime and trace timestamp simultaneously fo
 |TSTAMP
 |F (Full) timestamp value
 |===
-
