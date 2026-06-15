@@ -74,6 +74,7 @@ Copyright 2026 by RISC-V International.
 include::contributors.adoc[]
 
 include::intro.adoc[]
+:imagesdir: ../images
 include::body.adoc[]
 include::RHTI-Extensions.adoc[]
 include::Trace-Control-Extensions.adoc[]
