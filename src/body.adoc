@@ -86,8 +86,9 @@ It is highly recommended that the timestamp clock run at or a close ratio to cpu
 (((Profiling Performance Counters)))
 Event Trace can include the option of Profiling Performance Counters (PPCs) which are delta counters that are recorded at the time of an event, simultaneously reset to zero, then begin counting again. This is a requirement to keep the counter values smaller to reduce trace bandwidth and storage.  Post-processing of the trace data can reconstruct event counts across multiple event sequences to provide accumulated totals.  An example would be inclusive function call-return counts, where snippets of code execute in a function then more counts for functions that it calls.  "Self" or "exclusive" counts, i.e. only counts attributed to the code of the function itself would only accumulate counts from calls to other functions and from returns to calls of other functions.
 
-=== Block Diagram
+=== Event Trace Block Diagram
 (((Event Trace, block diagram)))
+
 images::EVT_block_1.svg[alt="EVT Block Diagram", width=100%, align=center]
 
 === Features and Benefits (non-normative)
@@ -334,7 +335,7 @@ RISC-V programmable performance counters have selector registers (programmed wit
 
 *Enabling selector recording.* An Event Trace control register <<Performance-Selector-Control>> includes an enable bit for each performance counter selector included in Event Trace.
 
-There are a class of programmable performance counter events that can occur with high frequency.  To avoid generating a trace event for every one which could overload the trace system, the selector event hardware includes a *cycles-interval* timer <<select-cycles-interval>> which programs a time window in which the hardware counts occurrences of the event.  At the end of the interval, Event Trace constructs a packet that includes the selector ID, the latched timestamp when the first event occurred, and the count. The duration of the cycles-interval timer is user selectable, with a minimum and maximum value. 
+There are a class of programmable performance counter events that can occur with high frequency.  To avoid generating a trace event for every one which could overload the trace system, the selector event hardware includes a *cycles-interval* timer <<select-cycles-interval>> which programs a time window in which the hardware counts occurrences of the event.  At the end of the interval, Event Trace constructs a packet that includes the selector ID, the latched timestamp when the first event occurred, and the count. The duration of the cycles-interval timer is user selectable, with a minimum and maximum value.
 
 The counter is defined to be 24 bits (increments-of-6 work best for N-Trace cite:[riscv-N-Trace-spec-1.0]), and is a saturating counter so that it does not roll over and cause loss of information.
 
@@ -371,7 +372,7 @@ When it ends, this triggers the gen_packet to generate the trace packet.
 
 === Limiting Event Trace Bandwidth based on Trace Encoder Feedback.
 
-Most Trace Encoders will include a FIFO for buffering trace events and to smooth out bursts of trace recordings that can occur at higher rates than the back-end rate of streaming trace packets to memory or PIB (probe interface block). Most FIFOs have a buffer depth signal indicating when it is close to full. This indicator, called *FIFO_AF* (almost full), can act as a back-pressure signal to the Event Trace hardware to temporarily stop the generation of trace packets.  
+Most Trace Encoders will include a FIFO for buffering trace events and to smooth out bursts of trace recordings that can occur at higher rates than the back-end rate of streaming trace packets to memory or PIB (probe interface block). Most FIFOs have a buffer depth signal indicating when it is close to full. This indicator, called *FIFO_AF* (almost full), can act as a back-pressure signal to the Event Trace hardware to temporarily stop the generation of trace packets.
 
 This is a front-end throttle to prevent the Trace Encoder FIFO from filling up and using the Encoder back-end to stop tracing (which generates an error packet when tracing is resumed). The lockout affects all external inputs to the encoder (when enabled) including Debug trigger/watchpoints <<Debug-Trigger-Watchpoint-Events>>, External Signals (triggers) <<External-Signal-Events>>, and Performance Counter selectors <<Performance-Counter-Selector-Based-Events>>. The control register to enable or disable this feedback mechanism is <<EventLockout>>.
 
