@@ -171,7 +171,8 @@ This is generated when both PC's are not filtered by privilege mode.
 |(Variant of above) Return from exception or interrupt (MRET or SRET)
 Generated when the source PC is filtered by privilege mode (but PCdest is not).
 
-|Debug Trigger/Watchpoint w/TRIG_ID
+|Debug Trigger/ +
+Watchpoint w/TRIG_ID
 (((N-Trace, Event, Debug Trigger/Watchpoint Message)))
 |5
 |1
@@ -180,7 +181,8 @@ Generated when the source PC is filtered by privilege mode (but PCdest is not).
 |When a debug trigger/watchpoint matches, the PC is normally the address of the instruction that caused the match, although for a watchpoint, it can be after when comparing on the data portion of a load or store. In multi-issue cores, this message may report the address of a later instruction retired in the same cycle. +
 For *trTeEvtFeatures.trTeEvtDbgTrigIDImpl* <<DebugTriggerIDImpl>> = 1, the *TRIG_ID* is the trigger number and is recorded in the EVTDATA field.
 
-|Debug Trigger/Watchpoint wo/TRIG_ID
+|Debug Trigger/ +
+Watchpoint wo/TRIG_ID
 (((N-Trace, Event, Debug Trigger/Watchpoint Message)))
 |5
 |0
@@ -204,7 +206,7 @@ For *trTeEvtFeatures.trTeEvtDbgTrigIDImpl* <<DebugTriggerIDImpl>> = 0, the hardw
 |PC
 |ES_VAL
 |*ES_VAL*[4:0] = {SIG_ID[2:0],SIG_VAL[1:0]} where SIG_VAL is rising (0), falling (1), both (2), multiple edges (3). +
-Generated when external signal edge on this channel (SIG_ID) is detected by the Event Trace encoder. The PC is the address of the last retired instruction when the signal is recognized. Timestamp must be enabled, and its value is latched at the time of the signal edge. *trTeEvtExtSigControl.trTeEvtExtSigPCMode* = 1 <<ExtSigPCMode>> to include the PC in the message.
+Generated when external signal edge on this channel (SIG_ID) is detected by the Event Trace encoder. The PC is the address of the closest red instruction when the signal is recognized. Timestamp must be enabled, and its value is latched at the occurrence of the signal edge. *trTeEvtExtSigControl.trTeEvtExtSigPCMode* = 1 <<ExtSigPCMode>> to include the PC in the message.
 
 |External Signal (trigger) no PC
 (((N-Trace, Event, External Signal Message wo/PC)))
@@ -220,7 +222,7 @@ Generated when external signal edge on this channel (SIG_ID) is detected by the 
 |1
 |SEL_ID
 |Count
-|*SEL_ID* is the Selector (channel) recorded. *Count* is the number of cycles the signal has a high value during the time window, defined by the control register *trTeEvtControl.trTeEvtPerfSelWindow* <<SelectCycleWindow>>.
+|*SEL_ID* is the Selector (channel) recorded. *Count* is the number of cycles the signal has a high value (i.e. level sensitive) during the interval window, defined by the control register *trTeEvtControl.trTeEvtPerfSelInterval* <<select-cycles-interval>>.
 |===
 
 === Event Trace Message Formats for Calls and Returns
