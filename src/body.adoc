@@ -737,7 +737,7 @@ NOTE: For the setup of *trTeEvtExceptionEn* and *trTeEvtInterruptEn*, the return
 
 
 |13
-| [[DebugTriggerIDImpl]]trTeEvtDbgTrigIDImpl 
+| [[DebugTriggerIDImpl]]trTeEvtDbgTrigIDImpl
 |Read as 1 if Debug Trigger ID is implemented in RHTI (or manually)
 |RO
 |0 (SD)
